@@ -19,5 +19,7 @@
     "Poll": true,
     "Story": true,
     "VideoNews": true,
-    "AutoPost": true
+    "AutoPost": true,
+    "Accounts": true,
+    "Project": true
 }

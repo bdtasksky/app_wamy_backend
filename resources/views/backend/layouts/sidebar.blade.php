@@ -27,6 +27,62 @@
                         </a>
                     </li>
                 @endcan
+                @can('read_accounts')
+                    <li class="{{ request()->is('accounts/*') ? 'mm-active' : '' }}">
+
+                        <a class="has-arrow material-ripple" href="#">
+                            <i class="fas fa-balance-scale"></i>
+                            <span>{{ __('language.accounts') }}</span>
+                        </a>
+                        <ul class="nav-second-level">
+                            @can('create_vouchers')
+                                <li class="{{ request()->is('admin/accounts/voucher/form') ? 'mm-active' : '' }}"><a
+                                        class="dropdown-item"
+                                        href="{{ route('accounts.voucher.form') }}">{{ __('language.transaction_entry_form') }}</a>
+                                </li>
+                            @endcan
+                            @can('read_vouchers')
+                                <li class="{{ request()->is('admin/accounts/voucher/list') ? 'mm-active' : '' }}"><a
+                                        class="dropdown-item"
+                                        href="{{ route('accounts.voucher.list') }}">{{ __('language.vouchers') }}</a>
+                                </li>
+                            @endcan
+                            @can('read_voucher_approval')
+                                <li class="{{ request()->is('admin/accounts/pending/list') ? 'mm-active' : '' }}">
+                                    <a class="dropdown-item"
+                                        href="{{ route('accounts.pending.voucher.list') }}">{{ __('language.voucher_approval') }}</a>
+                                </li>
+                            @endcan
+                            <li class="{{ request()->is('admin/accounts/voucher/deferred-list') ? 'mm-active' : '' }}">
+                                <a class="dropdown-item"
+                                    href="{{ route('accounts.voucher.deferredList') }}">{{ __('language.deferred') }}</a>
+                            </li>
+                            <li class="{{ request()->is('admin/accounts/installments*') ? 'mm-active' : '' }}">
+                                <a class="dropdown-item"
+                                    href="{{ route('installments.index') }}">{{ __('language.installment') }}</a>
+                            </li>
+                            <li class="{{ request()->routeIs('account.bank.*') ? 'mm-active' : '' }}">
+                                <a class="dropdown-item"
+                                    href="{{ route('account.bank.ledger') }}">{{ __('language.bank') }}</a>
+                            </li>
+                            @can('read_account_reports')
+                                <li class="{{ request()->routeIs('account.report.*') ? 'mm-active' : '' }}">
+                                    <a class="dropdown-item"
+                                        href="{{ route('account.report.financial') }}">{{ __('language.ledger_and_trial_balance') }}</a>
+                                </li>
+                            @endcan
+
+                            @can('read_financial_year')
+                                <li
+                                    class="{{ request()->routeIs('accounts.financial.*') || request()->routeIs('accounts.predefined.*') || request()->routeIs('accounts.opening-balance.*') || request()->routeIs('account.create') || request()->routeIs('subcodes.index') || request()->routeIs('subtypes.index') ? 'mm-active' : '' }}">
+                                    <a class="dropdown-item"
+                                        href="{{ route('accounts.financial.yearlist') }}">{{ __('language.accounts_settings') }}</a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcan
+                {{-- accounts ends --}}
 
                 @can('read_theme')
                     <li class="{{ request()->is('admin/theme') ? 'mm-active' : '' }}">
