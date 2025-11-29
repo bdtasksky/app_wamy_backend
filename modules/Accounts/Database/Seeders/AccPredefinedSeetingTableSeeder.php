@@ -1,0 +1,493 @@
+<?php
+
+namespace Modules\Accounts\Database\Seeders;
+
+use Illuminate\Database\Seeder;
+
+class AccPredefinedSeetingTableSeeder extends Seeder
+{
+    /**
+     * Auto generated seeder file.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        
+
+        \DB::table('acc_predefined_seeting')->truncate();
+        
+        \DB::table('acc_predefined_seeting')->insert(array (
+            0 => 
+            array (
+                'id' => 71,
+                'predefined_seeting_name' => 'POS Sales',
+                'predefined_seeting_description' => 'POS Sales',
+                'predefined_id' => 6,
+                'acc_coa_id' => 102,
+                'is_active' => 1,
+                'created_by' => 1,
+                'created_date' => '2024-09-25 17:27:02',
+                'updated_by' => NULL,
+                'updated_date' => NULL,
+            ),
+            1 => 
+            array (
+                'id' => 72,
+                'predefined_seeting_name' => 'POS Customer',
+                'predefined_seeting_description' => 'POS Customer A/R',
+                'predefined_id' => 8,
+                'acc_coa_id' => 52,
+                'is_active' => 1,
+                'created_by' => 1,
+                'created_date' => '2024-09-25 17:27:02',
+                'updated_by' => NULL,
+                'updated_date' => NULL,
+            ),
+            2 => 
+            array (
+                'id' => 73,
+                'predefined_seeting_name' => 'POS Sales Discount',
+                'predefined_seeting_description' => 'POS Sales Discount Income Contra',
+                'predefined_id' => 7,
+                'acc_coa_id' => 103,
+                'is_active' => 1,
+                'created_by' => 1,
+                'created_date' => '2024-09-25 17:27:02',
+                'updated_by' => NULL,
+                'updated_date' => NULL,
+            ),
+            3 => 
+            array (
+                'id' => 74,
+                'predefined_seeting_name' => 'POS VAT',
+                'predefined_seeting_description' => 'POS Customer Liability',
+                'predefined_id' => 11,
+                'acc_coa_id' => 113,
+                'is_active' => 0,
+                'created_by' => 1,
+                'created_date' => '2024-09-26 19:14:07',
+                'updated_by' => 1,
+                'updated_date' => '2024-09-26 19:14:07',
+            ),
+            4 => 
+            array (
+                'id' => 75,
+                'predefined_seeting_name' => 'POS Service Income',
+                'predefined_seeting_description' => 'POS Service Income ',
+                'predefined_id' => 21,
+                'acc_coa_id' => 105,
+                'is_active' => 1,
+                'created_by' => 1,
+                'created_date' => '2024-09-25 17:38:35',
+                'updated_by' => NULL,
+                'updated_date' => NULL,
+            ),
+            5 => 
+            array (
+                'id' => 76,
+                'predefined_seeting_name' => 'Current Year Profit Loss',
+                'predefined_seeting_description' => 'O/E',
+                'predefined_id' => 14,
+                'acc_coa_id' => 120,
+                'is_active' => 1,
+                'created_by' => 1,
+                'created_date' => '2024-09-25 20:40:19',
+                'updated_by' => NULL,
+                'updated_date' => NULL,
+            ),
+            6 => 
+            array (
+                'id' => 77,
+                'predefined_seeting_name' => 'POS Service Income',
+                'predefined_seeting_description' => 'POS Service Income ',
+                'predefined_id' => 27,
+                'acc_coa_id' => 105,
+                'is_active' => 1,
+                'created_by' => 1,
+                'created_date' => '2024-09-26 11:50:07',
+                'updated_by' => NULL,
+                'updated_date' => NULL,
+            ),
+            7 => 
+            array (
+                'id' => 78,
+                'predefined_seeting_name' => 'COGS POS',
+                'predefined_seeting_description' => 'COGS POS',
+                'predefined_id' => 10,
+                'acc_coa_id' => 81,
+                'is_active' => 0,
+                'created_by' => 1,
+                'created_date' => '2024-09-26 13:53:44',
+                'updated_by' => 1,
+                'updated_date' => '2024-09-26 14:00:33',
+            ),
+            8 => 
+            array (
+                'id' => 79,
+                'predefined_seeting_name' => 'COGS POS BANK',
+                'predefined_seeting_description' => 'COGS POS BANK',
+                'predefined_id' => 2,
+                'acc_coa_id' => 54,
+                'is_active' => 1,
+                'created_by' => 1,
+                'created_date' => '2024-09-26 14:00:33',
+                'updated_by' => NULL,
+                'updated_date' => NULL,
+            ),
+            9 => 
+            array (
+                'id' => 80,
+                'predefined_seeting_name' => 'POS Advance',
+                'predefined_seeting_description' => 'POS Advance ',
+                'predefined_id' => 3,
+                'acc_coa_id' => 115,
+                'is_active' => 1,
+                'created_by' => 1,
+                'created_date' => '2024-09-26 19:13:19',
+                'updated_by' => NULL,
+                'updated_date' => NULL,
+            ),
+            10 => 
+            array (
+                'id' => 81,
+                'predefined_seeting_name' => 'POS VAT u',
+                'predefined_seeting_description' => 'POS Customer Liability u',
+                'predefined_id' => 11,
+                'acc_coa_id' => 116,
+                'is_active' => 0,
+                'created_by' => 1,
+                'created_date' => '2024-09-29 16:58:18',
+                'updated_by' => 1,
+                'updated_date' => '2024-09-29 16:58:18',
+            ),
+            11 => 
+            array (
+                'id' => 82,
+                'predefined_seeting_name' => 'POS VAT u',
+                'predefined_seeting_description' => 'POS Customer Liability u',
+                'predefined_id' => 11,
+                'acc_coa_id' => 113,
+                'is_active' => 0,
+                'created_by' => 1,
+                'created_date' => '2024-12-23 19:02:18',
+                'updated_by' => 39,
+                'updated_date' => '2024-12-23 13:02:18',
+            ),
+            12 => 
+            array (
+                'id' => 83,
+                'predefined_seeting_name' => 'sal',
+                'predefined_seeting_description' => 'sal',
+                'predefined_id' => 16,
+                'acc_coa_id' => 86,
+                'is_active' => 0,
+                'created_by' => 1,
+                'created_date' => '2024-10-05 18:22:26',
+                'updated_by' => 1,
+                'updated_date' => '2024-10-05 18:22:26',
+            ),
+            13 => 
+            array (
+                'id' => 84,
+                'predefined_seeting_name' => 'Purchases Discount',
+                'predefined_seeting_description' => 'Purchases Discount',
+                'predefined_id' => 5,
+                'acc_coa_id' => 82,
+                'is_active' => 1,
+                'created_by' => 1,
+                'created_date' => '2024-10-05 17:08:17',
+                'updated_by' => NULL,
+                'updated_date' => NULL,
+            ),
+            14 => 
+            array (
+                'id' => 85,
+                'predefined_seeting_name' => 'Purchases Exp',
+                'predefined_seeting_description' => 'Purchases Exp',
+                'predefined_id' => 4,
+                'acc_coa_id' => 85,
+                'is_active' => 1,
+                'created_by' => 1,
+                'created_date' => '2024-10-05 17:11:00',
+                'updated_by' => NULL,
+                'updated_date' => NULL,
+            ),
+            15 => 
+            array (
+                'id' => 86,
+                'predefined_seeting_name' => 'POS Sales Return ',
+                'predefined_seeting_description' => 'POS Sales Return ',
+                'predefined_id' => 28,
+                'acc_coa_id' => 104,
+                'is_active' => 1,
+                'created_by' => 1,
+                'created_date' => '2024-10-05 17:16:37',
+                'updated_by' => NULL,
+                'updated_date' => NULL,
+            ),
+            16 => 
+            array (
+                'id' => 87,
+                'predefined_seeting_name' => 'POS Purchases Return',
+                'predefined_seeting_description' => 'POS Purchases Return',
+                'predefined_id' => 29,
+                'acc_coa_id' => 84,
+                'is_active' => 1,
+                'created_by' => 1,
+                'created_date' => '2024-10-05 17:17:08',
+                'updated_by' => NULL,
+                'updated_date' => NULL,
+            ),
+            17 => 
+            array (
+                'id' => 88,
+                'predefined_seeting_name' => 'POS  Transports Cost Purchases ',
+                'predefined_seeting_description' => 'POS  Transports Cost Purchases ',
+                'predefined_id' => 30,
+                'acc_coa_id' => 125,
+                'is_active' => 1,
+                'created_by' => 1,
+                'created_date' => '2024-10-05 18:20:34',
+                'updated_by' => NULL,
+                'updated_date' => NULL,
+            ),
+            18 => 
+            array (
+                'id' => 89,
+                'predefined_seeting_name' => 'POS  Labor Cost Purchases ',
+                'predefined_seeting_description' => 'POS  Labor Cost Purchases ',
+                'predefined_id' => 31,
+                'acc_coa_id' => 124,
+                'is_active' => 1,
+                'created_by' => 1,
+                'created_date' => '2024-10-05 18:21:32',
+                'updated_by' => NULL,
+                'updated_date' => NULL,
+            ),
+            19 => 
+            array (
+                'id' => 90,
+                'predefined_seeting_name' => 'POS  Others Cost Purchases ',
+                'predefined_seeting_description' => 'POS  Others  Cost Purchases ',
+                'predefined_id' => 32,
+                'acc_coa_id' => 126,
+                'is_active' => 1,
+                'created_by' => 1,
+                'created_date' => '2024-10-05 18:21:54',
+                'updated_by' => NULL,
+                'updated_date' => NULL,
+            ),
+            20 => 
+            array (
+                'id' => 91,
+                'predefined_seeting_name' => 'OPS Salary Exp',
+                'predefined_seeting_description' => 'OPS Salary Exp',
+                'predefined_id' => 16,
+                'acc_coa_id' => 86,
+                'is_active' => 1,
+                'created_by' => 1,
+                'created_date' => '2024-10-05 18:22:26',
+                'updated_by' => NULL,
+                'updated_date' => NULL,
+            ),
+            21 => 
+            array (
+                'id' => 92,
+                'predefined_seeting_name' => 'POS A/P Supplier',
+                'predefined_seeting_description' => 'POS A/P Supplier Liabilities',
+                'predefined_id' => 9,
+                'acc_coa_id' => 50,
+                'is_active' => 0,
+                'created_by' => 1,
+                'created_date' => '2024-10-22 13:36:39',
+                'updated_by' => 1,
+                'updated_date' => '2024-10-22 13:36:39',
+            ),
+            22 => 
+            array (
+                'id' => 93,
+                'predefined_seeting_name' => 'POS Cash',
+                'predefined_seeting_description' => 'POS Cash',
+                'predefined_id' => 1,
+                'acc_coa_id' => 53,
+                'is_active' => 1,
+                'created_by' => 1,
+                'created_date' => '2024-10-06 12:48:09',
+                'updated_by' => NULL,
+                'updated_date' => NULL,
+            ),
+            23 => 
+            array (
+                'id' => 94,
+                'predefined_seeting_name' => 'POS Service Return',
+                'predefined_seeting_description' => 'POS Service Return',
+                'predefined_id' => 33,
+                'acc_coa_id' => 127,
+                'is_active' => 1,
+                'created_by' => 1,
+                'created_date' => '2024-10-08 17:40:27',
+                'updated_by' => NULL,
+                'updated_date' => NULL,
+            ),
+            24 => 
+            array (
+                'id' => 95,
+                'predefined_seeting_name' => 'POS A/P Supplier',
+                'predefined_seeting_description' => 'POS A/P Supplier Liabilities',
+                'predefined_id' => 9,
+                'acc_coa_id' => 110,
+                'is_active' => 1,
+                'created_by' => 1,
+                'created_date' => '2024-10-22 13:36:39',
+                'updated_by' => NULL,
+                'updated_date' => NULL,
+            ),
+            25 => 
+            array (
+                'id' => 96,
+                'predefined_seeting_name' => 'Last Year Profit Loss',
+                'predefined_seeting_description' => 'Last Year Profit Loss Need Year ending.',
+                'predefined_id' => 15,
+                'acc_coa_id' => 121,
+                'is_active' => 1,
+                'created_by' => 1,
+                'created_date' => '2024-10-30 19:27:22',
+                'updated_by' => NULL,
+                'updated_date' => NULL,
+            ),
+            26 => 
+            array (
+                'id' => 97,
+                'predefined_seeting_name' => 'Commission Exp',
+                'predefined_seeting_description' => 'Commission Exp',
+                'predefined_id' => 34,
+                'acc_coa_id' => 130,
+                'is_active' => 1,
+                'created_by' => 1,
+                'created_date' => '2024-11-02 11:42:41',
+                'updated_by' => NULL,
+                'updated_date' => NULL,
+            ),
+            27 => 
+            array (
+                'id' => 98,
+                'predefined_seeting_name' => 'Commission Payable',
+                'predefined_seeting_description' => 'Commission Payable',
+                'predefined_id' => 35,
+                'acc_coa_id' => 131,
+                'is_active' => 1,
+                'created_by' => 1,
+                'created_date' => '2024-11-02 11:43:11',
+                'updated_by' => NULL,
+                'updated_date' => NULL,
+            ),
+            28 => 
+            array (
+                'id' => 99,
+                'predefined_seeting_name' => 'Inventory Expense',
+                'predefined_seeting_description' => 'Inventory Shrinkage Expense',
+                'predefined_id' => 13,
+                'acc_coa_id' => 135,
+                'is_active' => 0,
+                'created_by' => 1,
+                'created_date' => '2024-11-07 11:23:44',
+                'updated_by' => 1,
+                'updated_date' => '2024-11-06 11:27:21',
+            ),
+            29 => 
+            array (
+                'id' => 100,
+                'predefined_seeting_name' => 'Inventory Adjustment',
+                'predefined_seeting_description' => 'Inventory Adjustment',
+                'predefined_id' => 23,
+                'acc_coa_id' => 135,
+                'is_active' => 0,
+                'created_by' => 1,
+                'created_date' => '2024-11-07 11:24:52',
+                'updated_by' => 1,
+                'updated_date' => '2024-11-06 11:28:30',
+            ),
+            30 => 
+            array (
+                'id' => 101,
+                'predefined_seeting_name' => 'Inventory Assets',
+                'predefined_seeting_description' => 'Inventory Assets',
+                'predefined_id' => 13,
+                'acc_coa_id' => 57,
+                'is_active' => 1,
+                'created_by' => 1,
+                'created_date' => '2024-11-06 11:27:21',
+                'updated_by' => NULL,
+                'updated_date' => NULL,
+            ),
+            31 => 
+            array (
+                'id' => 102,
+                'predefined_seeting_name' => 'Inventory Adjustment Exp',
+                'predefined_seeting_description' => 'Inventory Adjustment Exp',
+                'predefined_id' => 23,
+                'acc_coa_id' => 135,
+                'is_active' => 1,
+                'created_by' => 1,
+                'created_date' => '2024-11-06 11:28:30',
+                'updated_by' => NULL,
+                'updated_date' => NULL,
+            ),
+            32 => 
+            array (
+                'id' => 103,
+                'predefined_seeting_name' => 'Capital',
+                'predefined_seeting_description' => 'Capital',
+                'predefined_id' => 12,
+                'acc_coa_id' => 118,
+                'is_active' => 0,
+                'created_by' => 1,
+                'created_date' => '2024-11-07 14:23:32',
+                'updated_by' => 1,
+                'updated_date' => '2024-11-06 14:27:09',
+            ),
+            33 => 
+            array (
+                'id' => 104,
+                'predefined_seeting_name' => 'Capital',
+                'predefined_seeting_description' => 'Capital',
+                'predefined_id' => 36,
+                'acc_coa_id' => 118,
+                'is_active' => 1,
+                'created_by' => 1,
+                'created_date' => '2024-11-06 14:27:09',
+                'updated_by' => NULL,
+                'updated_date' => NULL,
+            ),
+            34 => 
+            array (
+                'id' => 105,
+                'predefined_seeting_name' => 'Vat for Purchase',
+                'predefined_seeting_description' => '',
+                'predefined_id' => 17,
+                'acc_coa_id' => 60,
+                'is_active' => 1,
+                'created_by' => 1,
+                'created_date' => '2024-11-27 13:16:25',
+                'updated_by' => NULL,
+                'updated_date' => NULL,
+            ),
+            35 => 
+            array (
+                'id' => 106,
+                'predefined_seeting_name' => 'POS VAT',
+                'predefined_seeting_description' => 'POS Customer Liability',
+                'predefined_id' => 11,
+                'acc_coa_id' => 113,
+                'is_active' => 1,
+                'created_by' => 39,
+                'created_date' => '2024-12-23 13:02:18',
+                'updated_by' => NULL,
+                'updated_date' => NULL,
+            ),
+        ));
+
+        
+    }
+}

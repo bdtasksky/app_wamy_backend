@@ -1,0 +1,12 @@
+body {
+    background-color: #fff !important; 
+    background:none !important;
+}
+@media print {
+   tr.voucherList {
+       background-color: #ececec !important;
+       -webkit-print-color-adjust: exact;
+   }
+   
+   
+}
