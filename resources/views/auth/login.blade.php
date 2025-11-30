@@ -2,13 +2,13 @@
 @section('title', localize('login'))
 @section('content')
 
-    <div class="d-flex align-items-center justify-content-center text-center login-bg h-100vh">
+    <div class="d-flex align-items-center justify-content-center text-center login-bg h-100vh" style="background-image: url({{ app_setting()->login_image }});">
         <div class="form-wrapper position-relative m-auto">
             <div class="form-container my-4">
                 <div class="panel login-form-w">
                     <div class="panel-header text-center mb-3">
                         <div class="mb-3">
-                            <img src="{{ app_setting()->logo }}" class="img" width="180" height="40" alt="">
+                            <img src="{{ app_setting()->logo }}" class="img" alt="">
                         </div>
                         <p class="fw--semi-bold text-center fs-14 mb-0">{{ localize('welcome_back') }},
                             {{ app_setting()->title }}</p>
@@ -46,7 +46,7 @@
                                 </span>
                             @enderror
                         </div>
-                        @if (config('demo.demo_mode'))
+                        
                             <div class="panel-footer mt-5 bg-light login-info">
                                 <table class="table table-bordered table-hover">
                                     <thead>
@@ -65,7 +65,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                        @endif
+                        
 
                         <div class="form-check mb-3 text-end">
                             @if (Route::has('password.request'))

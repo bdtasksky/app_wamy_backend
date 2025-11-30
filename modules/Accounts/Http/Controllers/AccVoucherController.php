@@ -16,10 +16,10 @@ class AccVoucherController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['permission:read_vouchers'])->only(['voucher_list', 'getVoucherList', 'voucherDetails']);
-        $this->middleware(['permission:create_vouchers'])->only(['voucher_form', 'voucher_save']);
-        $this->middleware(['permission:update_vouchers'])->only(['voucher_edit', 'voucher_save']);
-        $this->middleware(['permission:delete_vouchers'])->only(['deleteVoucher', 'reverseVoucher']);
+        $this->middleware(['permission:read_voucher'])->only(['voucher_list', 'getVoucherList', 'voucherDetails']);
+        $this->middleware(['permission:create_voucher'])->only(['voucher_form', 'voucher_save']);
+        $this->middleware(['permission:update_voucher'])->only(['voucher_edit', 'voucher_save']);
+        $this->middleware(['permission:delete_voucher'])->only(['deleteVoucher', 'reverseVoucher']);
     }
     public function voucher_list() 
     {
