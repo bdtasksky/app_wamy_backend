@@ -139,7 +139,7 @@
                 <div class="col d-flex align-items-end">
                     <button type="button" id="filter-form" class="btn btn-success"
                         onclick="loadTransactions(1)">Search</button>
-                    @can('create_vouchers')
+                    @can('create_voucher')
                         <a style="margin-left:2%; white-space: nowrap" href="{{ route('accounts.voucher.form') }}"
                             class="btn btn-primary btn-md">
                             <i class="fa fa-plus-circle" aria-hidden="true"></i>
