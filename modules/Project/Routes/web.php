@@ -1,5 +1,7 @@
 <?php
-
+use App\Enums\PanelPrefixEnum;
+use Illuminate\Support\Facades\Route;
+use Modules\Project\Http\Controllers\ProjectController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +13,23 @@
 |
 */
 
-Route::prefix('project')->group(function() {
-    Route::get('/', 'ProjectController@index');
+Route::prefix(PanelPrefixEnum::ADMIN->value)->group(function () {
+    Route::group(['prefix' => 'project', 'middleware' => ['auth']], function () {
+
+        Route::controller(ProjectController::class)->name('project.')->group(function () {
+
+            Route::get('/list_of_projects', 'index')->name('index');
+            Route::get('/show', 'create')->name('create');
+
+            Route::post('/store', 'store')->name('store');
+            Route::get('/edit/{project:id}', 'edit')->name('edit');
+            Route::put('/update/{id}', 'update')->name('update');
+            Route::delete('delete/{project:id}', 'destroy')->name('destroy');
+
+            Route::get('/project-status-check','checkCategoryStatus')->name('status.check');
+
+
+        });
+
+    });
 });
