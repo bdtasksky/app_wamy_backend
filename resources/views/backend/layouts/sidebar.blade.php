@@ -1,35 +1,73 @@
 <style>
-    /* hide browser bullets (fallback) */
-    .nav-second-level,
-    .nav-second-level li {
+    /* === Strong, specific rules to remove submenu bullets/dots === */
+
+    /* 1) Remove pseudo-element bullets commonly used (.metismenu li::before etc.) */
+    #sidebar .metismenu li::before,
+    #sidebar .metismenu .nav-second-level li::before,
+    #sidebar .nav-second-level li::before,
+    .metismenu li::before,
+    .nav-second-level li::before,
+    ul.nav-second-level>li::before,
+    ul.nav-second-level li::before {
+        content: none !important;
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        background: none !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    /* 2) Remove native list markers (for modern browsers) */
+    #sidebar .nav-second-level li::marker,
+    .nav-second-level li::marker {
+        content: none !important;
+        display: none !important;
+    }
+
+    /* 3) Remove any background-image or background-color used as a dot */
+    #sidebar .nav-second-level li,
+    .nav-second-level li,
+    #sidebar .metismenu li,
+    .metismenu li {
+        list-style: none !important;
+        background-image: none !important;
+        background: transparent !important;
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+    }
+
+    /* 4) Ensure UL padding is removed and text is aligned by padding on anchors */
+    #sidebar .nav-second-level,
+    #sidebar .metismenu .nav-second-level,
+    .nav-second-level {
+        padding-left: 0 !important;
+        margin-left: 0 !important;
         list-style: none !important;
     }
 
-    /* remove any pseudo-element bullets (most common cause) */
-    .nav-second-level li::before,
-    .nav-second-level>li::before,
-    .metismenu li::before,
-    #sidebar .metismenu li::before,
-    ul.metismenu li::before {
-        content: none !important;
-        display: none !important;
-        background: none !important;
-        width: 0 !important;
-        height: 0 !important;
-    }
-
-    /* make sure anchor text doesn't get pushed by hidden bullets */
-    .nav-second-level li a,
+    /* 5) Give a small left padding to anchor so text doesn't stick to edge */
+    #sidebar .nav-second-level>li>a,
     .nav-second-level>li>a {
-        padding-left: 0.75rem !important;
-        /* adjust to align text with your icons */
+        display: block !important;
+        padding-left: 14px !important;
+        /* tweak 10-18px to your preferred spacing */
     }
 
-    /* if the green dot is an image or background on the li, clear it */
-    .nav-second-level li,
-    .nav-second-level>li {
-        background-image: none !important;
-        background-color: transparent !important;
+    /* 6) Extra: remove any small element or span that may be used as a marker */
+    #sidebar .nav-second-level li>.marker,
+    #sidebar .nav-second-level li>span.marker,
+    .nav-second-level li>.marker,
+    .nav-second-level li>span.marker {
+        display: none !important;
+    }
+
+    /* 7) If your template adds inline-svg or ::after markers, remove them too */
+    #sidebar .nav-second-level li::after,
+    .nav-second-level li::after,
+    .metismenu li::after {
+        display: none !important;
+        content: none !important;
     }
 </style>
 
@@ -118,6 +156,21 @@
                     </li>
                 @endcan
                 {{-- accounts ends --}}
+                {{-- @can('read_category') --}}
+                    <li class="{{ request()->is('admin/project*') ? 'mm-active' : '' }}">
+                        <a class="has-arrow material-ripple" href="#">
+                            <i class="fas fa-landmark"></i>
+                            <span> {{ localize('projects') }}</span>
+                        </a>
+                        <ul class="nav-second-level {{ request()->is('admin/project*') ? 'mm-show' : '' }}">
+                            <li
+                                class="{{ request()->is('admin/project/list_of_projects') ? 'mm-active' : '' }}">
+                                <a class="dropdown-item"
+                                    href="{{ route('project.index') }}">{{ ucwords(localize('project_list')) }}</a>
+                            </li>
+                        </ul>
+                    </li>
+                {{-- @endcan --}}
                 <li
                     class="{{ request()->is('admin/news*') || request()->is('admin/photo-library*') || request()->is('admin/category*') || request()->is('admin/videonews*') ? 'mm-active' : '' }}">
                     <a class="has-arrow material-ripple" href="#">
