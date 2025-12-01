@@ -5,6 +5,7 @@ namespace Modules\Project\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use Modules\Project\Entities\Zone;
 use Modules\Project\Entities\Project;
 use Modules\Menu\Entities\MenuContent;
 use Illuminate\Support\Facades\Storage;
@@ -41,8 +42,9 @@ class ProjectController extends Controller
     {
         $projects = Project::where('status', 1)->get();
         $languages = Language::all();
+        $zones= Zone::all();
         
-        return view('project::create', compact('projects', 'languages'));
+        return view('project::create', compact('projects', 'zones','languages'));
     }
 
     /**
@@ -57,6 +59,11 @@ class ProjectController extends Controller
             'name' => 'required',
             'project_type' => 'required',
             'status' => 'required',
+            'location'=>'required',
+            'target_amount' => 'required|numeric',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+            'description' => 'nullable|string',
         ]);
 
 
@@ -66,6 +73,11 @@ class ProjectController extends Controller
                 'name'    => $request->name,
                 'project_type'    => $request->project_type,
                 'status'=>$request->status,
+                'location'=>$request->location,
+                'target_amount' => $request->target_amount,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
+                'description' => $request->description,
             ]);
 
             // If the creation was successful, redirect with success message
@@ -96,8 +108,9 @@ class ProjectController extends Controller
     {
         $project = Project::findOrFail($project->id);
         $languages = Language::all();
+        $zones= Zone::all();
 
-        return view('project::edit', compact('project', 'languages'));
+        return view('project::edit', compact('project','zones', 'languages'));
     }
 
     /**
@@ -115,6 +128,11 @@ class ProjectController extends Controller
             'name' => 'required',
             'project_type' => 'required',
             'status' => 'required',
+            'location'=>'required',
+            'target_amount' => 'required|numeric',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+            'description' => 'nullable|string',
         ]);
 
 
@@ -125,6 +143,11 @@ class ProjectController extends Controller
                 'name'    => $request->name,
                 'project_type'    => $request->project_type,
                 'status'=>$request->status,
+                'location'=>$request->location,
+                'target_amount' => $request->target_amount,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
+                'description' => $request->description,
             ]);
 
             // If the creation was successful, redirect with success message

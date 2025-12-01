@@ -168,6 +168,11 @@
                                 <a class="dropdown-item"
                                     href="{{ route('project.index') }}">{{ ucwords(localize('project_list')) }}</a>
                             </li>
+                            <li
+                                class="{{ request()->is('admin/project/project-post') ? 'mm-active' : '' }}">
+                                <a class="dropdown-item"
+                                    href="{{ route('project.post.create') }}">{{ ucwords(localize('project_post')) }}</a>
+                            </li>
                         </ul>
                     </li>
                 {{-- @endcan --}}
