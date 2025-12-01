@@ -23,6 +23,28 @@
             @endif
         </div>
     </div>
+    <div class="col-md-12 mt-3">
+        <div class="row">
+            <label for="location"
+                class="col-form-label col-sm-3 col-md-12 col-xl-3 fw-semibold">{{ localize('select_location') }}<span
+                    class="text-danger">*</span></label>
+            <div class="col-sm-9 col-md-12 col-xl-9">
+
+                <select name="location" id="location" class="form-control select-basic-single" required>
+                    <option value="">--{{ localize('select') }}--</option>
+                    @foreach ($zones as $zone)  
+                        <option value="{{ $zone->id }}" {{ $project->location == $zone->id ? 'selected' : '' }}>{{ $zone->name }}</option>
+                    @endforeach
+                    
+                </select>
+
+            </div>
+
+            @if ($errors->has('location'))
+                <div class="error text-danger m-2">{{ $errors->first('location') }}</div>
+            @endif
+        </div>
+    </div>
 
     <div class="col-md-12 mt-3">
         <div class="row">
@@ -36,6 +58,51 @@
 
             @if ($errors->has('project_name'))
                 <div class="error text-danger m-2">{{ $errors->first('project_name') }}</div>
+            @endif
+        </div>
+    </div>
+    <div class="col-md-12 mt-3">
+        <div class="row">
+            <label for="target_amount"
+                class="col-form-label col-sm-3 col-md-12 col-xl-3 fw-semibold">{{ localize('target_amount') }}<span
+                    class="text-danger">*</span></label>
+            <div class="col-sm-9 col-md-12 col-xl-9">
+                <input type="number" class="form-control" id="target_amount" name="target_amount"
+                    placeholder="{{ localize('target_amount') }}" value="{{ old('target_amount') ?? $project->target_amount }}" required>
+            </div>
+
+            @if ($errors->has('target_amount'))
+                <div class="error text-danger m-2">{{ $errors->first('target_amount') }}</div>
+            @endif
+        </div>
+    </div>
+    <div class="col-md-12 mt-3">
+        <div class="row">
+            <label for="start_date"
+                class="col-form-label col-sm-3 col-md-12 col-xl-3 fw-semibold">{{ localize('start_date') }}<span
+                    class="text-danger">*</span></label>
+            <div class="col-sm-9 col-md-12 col-xl-9">
+                <input type="date" class="form-control" id="start_date" name="start_date"
+                    placeholder="{{ localize('start_date') }}" value="{{ old('start_date') ?? $project->start_date }}" required>
+            </div>
+
+            @if ($errors->has('start_date'))
+                <div class="error text-danger m-2">{{ $errors->first('start_date') }}</div>
+            @endif
+        </div>
+    </div>
+    <div class="col-md-12 mt-3">
+        <div class="row">
+            <label for="end_date"
+                class="col-form-label col-sm-3 col-md-12 col-xl-3 fw-semibold">{{ localize('end_date') }}<span
+                    class="text-danger">*</span></label>
+            <div class="col-sm-9 col-md-12 col-xl-9">
+                <input type="date" class="form-control" id="end_date" name="end_date"
+                    placeholder="{{ localize('end_date') }}" value="{{ old('end_date') ?? $project->end_date }}" required>
+            </div>
+
+            @if ($errors->has('end_date'))
+                <div class="error text-danger m-2">{{ $errors->first('end_date') }}</div>
             @endif
         </div>
     </div>
@@ -61,6 +128,21 @@
 
             @if ($errors->has('status'))
                 <div class="error text-danger m-2">{{ $errors->first('status') }}</div>
+            @endif
+        </div>
+    </div>
+    <div class="col-md-12 mt-3">
+        <div class="row">
+            <label for="description"
+                class="col-form-label col-sm-3 col-md-12 col-xl-3 fw-semibold">{{ localize('description') }}</label>
+            <div class="col-sm-9 col-md-12 col-xl-9">
+
+                <textarea  class="form-control" id="description" name="description"
+                    placeholder="{{ localize('description') }}" rows ="3">{{ old('description') ?? $project->description }}</textarea>
+            </div>
+
+            @if ($errors->has('description'))
+                <div class="error text-danger m-2">{{ $errors->first('description') }}</div>
             @endif
         </div>
     </div>

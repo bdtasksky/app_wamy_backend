@@ -25,6 +25,9 @@ class ProjectDataTable extends DataTable
             ->editColumn('project_name', function ($row) {
                 return $row->name ? $row->name : '';
             })
+             ->editColumn('location', function ($row) {
+                return $row->zone ? $row->zone->name : '';
+            })
             ->editColumn('project_type', function ($row) {
                 return $row->project_type ? $row->project_type : '';
             })
@@ -110,10 +113,16 @@ class ProjectDataTable extends DataTable
 
             Column::make('project_name')
                 ->title(localize('project_name')),
+            Column::make('location')
+                ->title(localize('location')),
             Column::make('project_type')
                 ->title(localize('project_type')),
             Column::make('status')
                 ->title(localize('status')),
+            Column::make('target_amount')
+                ->title(localize('target_amount')),
+            Column::make('raised_amount')
+                ->title(localize('raised_amount')),
 
             Column::make('action')
                 ->title(localize('action'))->addClass('column-sl')->orderable(false)

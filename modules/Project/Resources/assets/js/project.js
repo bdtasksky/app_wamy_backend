@@ -19,6 +19,9 @@
                 $('#project_type').select2({
                     dropdownParent: $('#projectDetailsModal')
                 });
+                $('#location').select2({
+                    dropdownParent: $('#projectDetailsModal')
+                });
                 $('#status').select2({
                     dropdownParent: $('#projectDetailsModal')
                 });
@@ -97,6 +100,9 @@
                     dropdownParent: $('#projectDetailsModal')
                 });
                 $('#status').select2({
+                    dropdownParent: $('#projectDetailsModal')
+                });
+                $('#location').select2({
                     dropdownParent: $('#projectDetailsModal')
                 });
 

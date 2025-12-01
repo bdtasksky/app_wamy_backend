@@ -2,6 +2,7 @@
 use App\Enums\PanelPrefixEnum;
 use Illuminate\Support\Facades\Route;
 use Modules\Project\Http\Controllers\ProjectController;
+use Modules\Project\Http\Controllers\ProjectPostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,15 +21,14 @@ Route::prefix(PanelPrefixEnum::ADMIN->value)->group(function () {
 
             Route::get('/list_of_projects', 'index')->name('index');
             Route::get('/show', 'create')->name('create');
-
             Route::post('/store', 'store')->name('store');
             Route::get('/edit/{project:id}', 'edit')->name('edit');
             Route::put('/update/{id}', 'update')->name('update');
             Route::delete('delete/{project:id}', 'destroy')->name('destroy');
-
-            Route::get('/project-status-check','checkCategoryStatus')->name('status.check');
-
-
+        });
+        Route::controller(ProjectPostController::class)->name('project.post.')->group(function () {
+            Route::get('/project-post','create')->name('create');
+            Route::post('/project-post-store', 'store')->name('store');
         });
 
     });
