@@ -224,13 +224,18 @@ class NewsMst extends Model
 
     }
 
-    public static function newsDetails($encode_title)
+    public static function newsDetails($id)
     {
 
-        $encode_title = urldecode($encode_title);
+        //$encode_title = urldecode($encode_title);
 
         $dif    = DB::table('settings')->where('id', 118)->first();
         $difimg = json_decode($dif->details);
+
+
+         $lang = request()->header('Accept-Language');
+        Carbon::setLocale($lang);
+
 
         $newses = DB::table('news_msts')
             ->select('news_msts.*',
@@ -243,7 +248,9 @@ class NewsMst extends Model
             ->leftJoin('reporters as r', 'r.id', '=', 'news_msts.reporter_id')
             ->leftJoin('categories', 'categories.slug', '=', 'news_msts.page')
             ->leftJoin('post_seo_onpages', 'post_seo_onpages.news_id', '=', 'news_msts.news_id')
-            ->where('news_msts.encode_title', $encode_title)
+            //->where('news_msts.encode_title', $encode_title)
+            ->where('news_msts.language_id', $lang)
+            ->where('news_msts.id', $id)
             ->first();
 
         $data = [];
@@ -263,28 +270,28 @@ class NewsMst extends Model
 
             $json = (object) [
                 'id'             => $newses->news_id,
-                'stitle'         => $newses->stitle,
+                // 'stitle'         => $newses->stitle,
                 'title'          => $newses->title,
-                'encode_title'   => $newses->encode_title,
-                'image_thumb'    => $imgurl . 'images/thumb/' . $newses->image,
-                'image_large'    => $imgurl . 'images/large/' . $newses->image,
-                'category_name'  => $newses->category_name,
-                'category'       => $newses->page,
-                'news'           => $newses->news,
-                'video'          => $newses->videos,
-                'reporter'       => $newses->reporter_name ?? $newses->name,
-                'reporter_image' => $reporter_photo,
-                'post_date'      => $newses->post_date,
+                // 'encode_title'   => $newses->encode_title,
+                // 'image_thumb'    => $imgurl . 'images/thumb/' . $newses->image,
+                'image'    => $imgurl . 'images/large/' . $newses->image,
+                // 'category_name'  => $newses->category_name,
+                // 'category'       => $newses->page,
+                'description'           => $newses->news,
+                // 'video'          => $newses->videos,
+                // 'reporter'       => $newses->reporter_name ?? $newses->name,
+                // 'reporter_image' => $reporter_photo,
+                'date'      =>Carbon::parse($newses->time_stamp)->translatedFormat('j F, Y'),
                 'time_stamp'     => $newses->time_stamp,
             ];
 
             // related post data
-            $relatedPost['relatedPost'] = self::relatedPost($newses->page, 6, 0, $newses->news_id);
+            $relatedPost['related_blogs'] = self::relatedPost($newses->page, 6, 0, $newses->news_id);
             //post tag data
-            $tags['tags'] = DB::table('post_tags')->select('tag')->where('news_id', $newses->news_id)->get();
-            $ads['ads']   = self::ads(3);
+            // $tags['tags'] = DB::table('post_tags')->select('tag')->where('news_id', $newses->news_id)->get();
+            // $ads['ads']   = self::ads(3);
             // array merge
-            $data = array_merge((array) $json, $relatedPost, $tags, $ads);
+            $data = array_merge((array) $json, $relatedPost);
             return $data;
         } else {
             return $data;

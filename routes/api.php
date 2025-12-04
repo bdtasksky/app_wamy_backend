@@ -32,7 +32,7 @@ Route::controller(ApiController::class)->group(function () {
     Route::get('populer-post', 'popularPost');
     Route::get('web-setting', 'webSetting');
 
-    Route::get('post-detail/{encode_title}', 'newsDetails');
+    Route::get('post-detail/{id}', 'newsDetails');
     Route::get('category-post/{slug}', 'categoryPost');
 
     Route::get('page-link', 'pageLink');

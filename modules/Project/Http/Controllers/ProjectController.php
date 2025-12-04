@@ -40,7 +40,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        $projects = Project::where('status', 1)->get();
+        $projects = Project::all();
         $languages = Language::all();
         $zones= Zone::all();
         
@@ -70,21 +70,18 @@ class ProjectController extends Controller
         try {
 
             Project::create([
-                'name'    => $request->name,
-                'project_type'    => $request->project_type,
-                'status'=>$request->status,
-                'location'=>$request->location,
+                'name' => $request->name,
+                'project_type' => $request->project_type,
+                'status' => $request->status,
+                'location' => $request->location,
                 'target_amount' => $request->target_amount,
                 'start_date' => $request->start_date,
                 'end_date' => $request->end_date,
                 'description' => $request->description,
             ]);
 
-            // If the creation was successful, redirect with success message
             return response()->json(['error' => false, 'msg' => localize('data_saved_successfully')]);
         } catch (\Exception $e) {
-            // If an exception occurs (e.g., validation error, database error), handle it here
-            // You can customize the error message based on the type of exception
             return response()->json(['error' => true, 'msg' => 'Failed to save data: ' . $e->getMessage()]);
         }
     }
@@ -108,7 +105,7 @@ class ProjectController extends Controller
     {
         $project = Project::findOrFail($project->id);
         $languages = Language::all();
-        $zones= Zone::all();
+        $zones = Zone::all();
 
         return view('project::edit', compact('project','zones', 'languages'));
     }
