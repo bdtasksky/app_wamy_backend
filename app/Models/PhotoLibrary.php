@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Model;
+use Modules\Category\Entities\Category;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class PhotoLibrary extends Model
 {
@@ -66,6 +67,10 @@ class PhotoLibrary extends Model
             }
 
         });
+    }
+    public function category_list()
+    {
+        return $this->belongsTo(Category::class, 'category');
     }
 
 }

@@ -26,7 +26,7 @@ class CommonApis extends Model
     {
         // $dif    = DB::table('settings')->where('id', 118)->first();
         // $difimg = json_decode($dif->details);
-        
+        $lang = request()->header('Accept-Language');
         $LN = [];
         $PP = [];
 
@@ -64,7 +64,6 @@ class CommonApis extends Model
             // $LN['image_thumb']   = $imgurl . 'images/thumb/' . $val->image;
             // $LN['image_large']   = $imgurl . 'images/large/' . $val->image;
 
-            $lang = request()->header('Accept-Language');
             Carbon::setLocale($lang);
             $newsWithoutImg = preg_replace('/<img[^>]*>/', '', $val->news);
             $cleanNews = strip_tags($newsWithoutImg);

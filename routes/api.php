@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
-
+use App\Http\Controllers\ApiAuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,8 +15,12 @@ use App\Http\Controllers\ApiController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/register', [ApiAuthController::class, 'register']);
+Route::post('/login',    [ApiAuthController::class, 'login']);
+
+Route::middleware('auth:api')->group(function () {
+    Route::get('/me',     [ApiAuthController::class, 'me']);
+    Route::post('/logout',[ApiAuthController::class, 'logout']);
 });
 
 Route::get('/', function () {
@@ -45,6 +49,9 @@ Route::controller(ApiController::class)->group(function () {
     Route::get('topic-posts/{topic}', 'topicPost');
     Route::post('archive-posts', 'archivePosts');
     Route::get('teams', 'ourTeam');
+    Route::get('media-library', 'mediaLibrary');
+    Route::get('category-media-library', 'categoryMediaLibrary');
+    Route::get('footer-menu', 'getFooterMenus');
 
 });
 

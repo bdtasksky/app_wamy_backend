@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Api\CommonApis;
-use App\Models\Api\NewsMst;
 use App\Traits\Common;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\Api\NewsMst;
 use Illuminate\Support\Str;
+use App\Models\PhotoLibrary;
+use Illuminate\Http\Request;
+use App\Models\Api\CommonApis;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Modules\Menu\Entities\MenuContent;
 use Modules\Setting\Entities\Application;
 
 class ApiController extends Controller
@@ -655,6 +657,93 @@ class ApiController extends Controller
 
         return sendSuccessResponse('metadata', $json, 200);
 
+    }
+    public static function mediaLibrary(){
+        $data = PhotoLibrary::latest()->limit(10)->get();
+        foreach ($data as $key => $value) {
+            $imgurl = storage_asset_image($value->thumb_image) ? storage_asset_image($value->thumb_image) : asset('storage/') . '/';
+
+            $json[] = (object) [
+                'image' => $imgurl,
+                'title' =>$value->title,
+                'image_name' =>$value->actual_image_name,
+            ];
+        }
+
+        if($data){
+            return sendSuccessResponse('success', $json, 200);
+        }else{
+            return sendErrorResponse('No data found', [], 404);
+        }
+    }
+    public function categoryMediaLibrary()
+    {
+        $data = PhotoLibrary::with('category_list')->latest()->get();
+        $galleryImages = [];
+
+        foreach ($data as $item) {
+            $categoryDisplayName = $item->category_list->category_name ?? 'Uncategorized';
+            $categoryKey = Str::slug($categoryDisplayName); // Convert display name to a slug for the key
+
+            $imgurl = storage_asset_image($item->thumb_image) ? storage_asset_image($item->thumb_image) : asset('storage/') . '/';
+
+            if (!isset($galleryImages[$categoryKey])) {
+                $galleryImages[$categoryKey] = [];
+            }
+
+            $galleryImages[$categoryKey][] = (object) [
+                'id'       => $item->id,
+                'title'    => $item->title,
+                'image'    => $imgurl,
+            ];
+        }
+
+        if (!empty($galleryImages)) {
+            return sendSuccessResponse('success', (object) $galleryImages, 200);
+        } else {
+            return sendErrorResponse('No data found', [], 404);
+        }
+    }
+    public function getFooterMenus()
+    {
+        $response_data = [];
+        $lang = request()->header('Accept-Language');
+        // Helper function to format menu items
+        $formatMenuItems = function ($menuItems) {
+            $formatted = [];
+            foreach ($menuItems as $item) {
+                $formatted[] = (object) [
+                    'name'    => $item->menu_level,
+                    'position' => $item->menu_position,
+                    'slug'     => $item->slug,
+                    'link'     => $item->link,
+                ];
+            }
+            return $formatted;
+        };
+
+        $settings = DB::table('app_settings')->first();
+        $response_data['logo']   = app_setting()->footer_logo;
+        $response_data['text']   = $settings->footer_text;
+
+
+        // Fetch Footer Menu (menu_id = 3)
+        $footerMenu = MenuContent::where('menu_id', 3)->where('status', 1)->where('language_id', $lang)->orderBy('menu_position', 'ASC')->get();
+        $response_data['menu'] = $formatMenuItems($footerMenu);
+
+        // Fetch Footer Category (menu_id = 2)
+        $footerCategory = MenuContent::where('menu_id', 2)->where('status', 1)->where('language_id', $lang)->orderBy('menu_position', 'ASC')->get();
+        $response_data['category'] = $formatMenuItems($footerCategory);
+
+        // Fetch Footer Page (menu_id = 4)
+        $footerPage = MenuContent::where('menu_id', 4)->where('status', 1)->where('language_id', $lang)->orderBy('menu_position', 'ASC')->get();
+        $response_data['page'] = $formatMenuItems($footerPage);
+
+        if (!empty($response_data['menu']) || !empty($response_data['category']) || !empty($response_data['page'])) {
+            return sendSuccessResponse('success', $response_data, 200);
+        } else {
+            return sendErrorResponse('No data found', [], 404);
+        }
     }
 
 }

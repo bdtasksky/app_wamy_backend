@@ -44,6 +44,10 @@ return [
             'driver' => 'session',
             'provider' => 'web_users',
         ],
+        'api' => [
+            'driver' => 'jwt',
+            'provider' => 'webusers', // or 'users' if using default; we'll add provider below
+        ],
     ],
 
     /*
@@ -69,6 +73,10 @@ return [
             'model' => App\Models\User::class,
         ],
         'web_users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\WebUser::class,
+        ],
+        'webusers' => [
             'driver' => 'eloquent',
             'model' => App\Models\WebUser::class,
         ],
