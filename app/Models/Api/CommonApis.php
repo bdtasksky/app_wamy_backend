@@ -24,9 +24,9 @@ class CommonApis extends Model
     #------------------------------------
     public static function latestPost($limit)
     {
-        $dif    = DB::table('settings')->where('id', 118)->first();
-        $difimg = json_decode($dif->details);
-
+        // $dif    = DB::table('settings')->where('id', 118)->first();
+        // $difimg = json_decode($dif->details);
+        
         $LN = [];
         $PP = [];
 
@@ -36,33 +36,46 @@ class CommonApis extends Model
             ->where('news_msts.publish_date', '<=', date("Y-m-d"))
             ->where('news_msts.is_latest', 1)
             ->where('news_msts.status', 0)
+            ->where('news_msts.language_id', $lang)
             ->orderBy('news_msts.id', 'DESC')
             ->limit($limit)
             ->get();
 
         foreach ($result as $key => $val) {
-
             $imgurl = $val->image_base_url ? $val->image_base_url : asset('storage/') . '/';
 
-            $LN['default_img']   = asset($difimg->img);
-            $LN['category_name'] = $val->category_name;
-            $LN['category']      = $val->page;
-            $LN['image_title']   = null;
-            $LN['image_alt']     = $val->image_alt;
-            $LN['news_id']       = $val->news_id;
-            $LN['post_by_image'] = ($val->photo != '' ? asset('storage/' . $val->photo) : asset($difimg->img));
-            $LN['post_by_name']  = $val->name;
-            $LN['post_by_id']    = $val->id;
-            $LN['post_date']     = Carbon::parse($val->time_stamp)->diffForhumans();
-            $LN['time_stamp']    = $val->time_stamp;
-            $LN['post_title']    = $val->title;
-            $LN['encode_titl']   = $val->encode_title;
-            $LN['stitle']        = $val->stitle;
-            $LN['video']         = $val->videos;
-            $LN['image_check']   = $val->image;
-            $LN['image_thumb']   = $imgurl . 'images/thumb/' . $val->image;
-            $LN['image_large']   = $imgurl . 'images/large/' . $val->image;
+            // $LN['default_img']   = asset($difimg->img);
+            // $LN['category_name'] = $val->category_name;
+            // $LN['category']      = $val->page;
+            // $LN['image_title']   = null;
+            // $LN['image_alt']     = $val->image_alt;
+            // $LN['id']       = $val->news_id;
+            // $LN['post_by_image'] = ($val->photo != '' ? asset('storage/' . $val->photo) : asset($difimg->img));
+            // $LN['post_by_name']  = $val->name;
+            // $LN['post_by_id']    = $val->id;
+            // $LN['post_date']     = Carbon::parse($val->time_stamp)->diffForhumans();
+            // $LN['time_stamp']    = $val->time_stamp;
+            // $LN['post_title']    = $val->title;
+            // $LN['encode_titl']   = $val->encode_title;
+            // $LN['stitle']        = $val->stitle;
+            // $LN['video']         = $val->videos;
+            // $LN['news']          = $val->news;
+            // $LN['image_check']   = $val->image;
+            // $LN['image_thumb']   = $imgurl . 'images/thumb/' . $val->image;
+            // $LN['image_large']   = $imgurl . 'images/large/' . $val->image;
 
+            $lang = request()->header('Accept-Language');
+            Carbon::setLocale($lang);
+            $newsWithoutImg = preg_replace('/<img[^>]*>/', '', $val->news);
+            $cleanNews = strip_tags($newsWithoutImg);
+
+            $LN['id']       = $val->news_id;
+            $LN['image']   = $imgurl . 'images/large/' . $val->image;
+            $LN['date']    = Carbon::parse($val->time_stamp)->translatedFormat('j F, Y');
+            $LN['title']    = $val->title;
+            $LN['short_description'] = mb_substr($cleanNews, 0, 100) . (mb_strlen($cleanNews) > 100 ? '...' : '');
+            $LN['description'] = $val->news;
+            
             $PP[$key] = (object) $LN;
 
         }

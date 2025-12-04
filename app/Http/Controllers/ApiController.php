@@ -170,7 +170,11 @@ class ApiController extends Controller
     public function latestPost()
     {
         $data = CommonApis::latestPost(20);
-        return sendSuccessResponse('Latest post List', $data, 200);
+        if ($data) {
+            return sendSuccessResponse('Latest post List', $data, 200);
+        } else {
+            return sendErrorResponse('Not data found', [], 404);
+        }
     }
 
     /*
